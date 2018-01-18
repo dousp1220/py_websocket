@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        var ws ;
+        (function () {
+             ws = new WebSocket('ws://localhost:123456');
+             ws.onopen =  function (msg) {
+                console.log('webSocket opened');
+             };
+
+             ws.onerror = function (error) {
+                console.log('error :' + error.name + error.number);
+             };
+
+             ws.onclose =  function () {
+                console.log('webSocket closed');
+             };
+
+            ws.onmessage = function(result, nTime){
+                console.log(result);
+                sendMessage();
+            }
+        })();
+
+        function sendMessage () {
+            console.log("sending a message");
+            ws.send("你好");
+        }
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
